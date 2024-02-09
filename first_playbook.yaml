@@ -1,6 +1,22 @@
 - name: Configure my dev VM
   hosts: 127.0.0.1
   connection: local
+  vars:
+    flatpak_packages:
+      - name: com.slack.Slack
+      - name: com.visualstudio.code
+    dnf_packages:
+      - name: bat
   tasks:
-    - name: Hello ansible
-      shell: echo "Hello ansible"  >> /tmp/log
+    - name: Install Flatpak packages
+      ansible.builtin.flatpak:
+        name: "{{ item.name }}"
+        state: present
+      loop: "{{ flatpak_packages }}"
+      
+    - name: Install DNF packages
+      ansible.builtin.dnf:
+        name: "{{ item.name }}"
+        state: present
+      loop: "{{ dnf_packages }}"
+      become: true

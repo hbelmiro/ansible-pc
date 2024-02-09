@@ -23,7 +23,7 @@ install_ansible() {
 main() {
     install_pip
     install_ansible
-    ansible-playbook first_playbook.yaml
+    ansible-playbook --ask-become-pass first_playbook.yaml
 }
 
 main
