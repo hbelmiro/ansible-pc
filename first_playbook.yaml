@@ -1,0 +1,6 @@
+- name: Configure my dev VM
+  hosts: 127.0.0.1
+  connection: local
+  tasks:
+    - name: Hello ansible
+      shell: echo "Hello ansible"  >> /tmp/log
