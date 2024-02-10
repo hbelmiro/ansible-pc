@@ -3,10 +3,17 @@
   connection: local
   vars:
     flatpak_packages:
+      - name: org.gnome.Extensions
+      - name: com.google.Chrome
       - name: com.slack.Slack
       - name: com.visualstudio.code
     dnf_packages:
       - name: bat
+      - name: flatpak
+      - name: gcc
+      - name: gnome-tweaks
+      - name: terminator
+      - name: zsh
   tasks:
     - name: Install Flatpak packages
       ansible.builtin.flatpak:
