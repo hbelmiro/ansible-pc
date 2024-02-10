@@ -128,9 +128,6 @@ main() {
     install_from_dnf "zsh"
     
     install_from_flatpak "com.bitwarden.desktop"
-    install_from_flatpak "com.jetbrains.GoLand"
-    install_from_flatpak "com.jetbrains.IntelliJ-IDEA-Ultimate"
-    install_from_flatpak "com.jetbrains.PyCharm-Professional"
     install_from_flatpak "com.slack.Slack"
     install_from_flatpak "org.gnome.DejaDup"
     install_from_flatpak "org.gnome.Extensions"
