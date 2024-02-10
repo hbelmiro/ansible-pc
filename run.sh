@@ -55,7 +55,6 @@ configure_git() {
 
     git config --global user.name "hbelmiro"
     git config --global user.email helber.belmiro@gmail.com
-    git config commit.gpgsign true
 
     log "Git successfully configured."
 }
@@ -72,10 +71,15 @@ generate_gpg_keys() {
     log "Do you want to generate a new GPG key?"
     select yn in "Yes" "No"; do
         case $yn in
-            Yes ) gpg --full-generate-key; break;;
+            Yes ) do_generate_gpg_keys; break;;
             No ) break;;
         esac
     done
+}
+
+do_generate_gpg_keys() {
+    gpg --full-generate-key
+    git config commit.gpgsign false
 }
 
 install_jdk() {
@@ -119,6 +123,7 @@ main() {
     install_from_dnf "flatpak"
     install_from_dnf "gcc"
     install_from_dnf "gnome-tweaks"
+    install_from_dnf "maven"
     install_from_dnf "terminator"
     install_from_dnf "zsh"
     
