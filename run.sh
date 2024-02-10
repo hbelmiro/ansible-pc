@@ -103,8 +103,6 @@ main() {
 
     configure_git
     generate_gpg_keys
-
-    echo "test"
 }
 
 main
