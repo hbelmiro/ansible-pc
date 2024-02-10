@@ -55,6 +55,7 @@ configure_git() {
 
     git config --global user.name "hbelmiro"
     git config --global user.email helber.belmiro@gmail.com
+    git config commit.gpgsign true
 
     log "Git successfully configured."
 }
@@ -72,7 +73,7 @@ generate_gpg_keys() {
     select yn in "Yes" "No"; do
         case $yn in
             Yes ) gpg --full-generate-key; break;;
-            No ) exit;;
+            No ) break;;
         esac
     done
 }
@@ -101,10 +102,8 @@ main() {
     install_from_homebrew "go"
     install_from_homebrew "zsh-autosuggestions"
 
-    configure_git
     generate_gpg_keys
-
-    echo "test"
+    configure_git
 }
 
 main
