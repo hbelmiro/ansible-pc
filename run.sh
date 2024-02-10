@@ -69,13 +69,48 @@ generate_gpg_keys() {
     log "Key size: at least 4096 bits"
     log "Key validity period: 1 year (it's a good practice to rotate the key once a year)"
 
-    echo "Do you want to generate a new GPG key?"
+    log "Do you want to generate a new GPG key?"
     select yn in "Yes" "No"; do
         case $yn in
             Yes ) gpg --full-generate-key; break;;
             No ) break;;
         esac
     done
+}
+
+install_jdk() {
+    local VERSION="$1"
+
+    log "Installing JDK ${VERSION}..."
+
+    local DIRECTORY="${HOME}/dev/jdk/${VERSION}"
+
+    if [ -d "${DIRECTORY}" ]; then
+        log "JDK ${VERSION} already installed."
+    else
+        mkdir -p "${DIRECTORY}"
+
+        local API_URL="https://api.adoptium.net/v3/binary/latest/${VERSION}/ga/linux/x64/jdk/hotspot/normal/eclipse"
+
+        local FETCH_URL
+        FETCH_URL=$(curl -s -w %{redirect_url} "${API_URL}")
+
+        local FILENAME
+        FILENAME=$(curl -OL -w %{filename_effective} "${FETCH_URL}")
+
+        mv "$FILENAME" "$DIRECTORY"
+
+        pushd "${DIRECTORY}"
+        curl -Ls "${FETCH_URL}.sha256.txt" | sha256sum -c --status
+        popd
+
+        log "Uncompressing downloaded file..."
+        tar -xzf "${DIRECTORY}"/"${FILENAME}" -C "${DIRECTORY}/"
+
+        rm "${DIRECTORY}"/"${FILENAME}"
+
+        log "JDK ${VERSION} successfully installed."
+    fi
 }
 
 main() {
@@ -104,6 +139,9 @@ main() {
 
     generate_gpg_keys
     configure_git
+
+    install_jdk "17"
+    install_jdk "21"
 }
 
 main
