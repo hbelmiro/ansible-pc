@@ -128,15 +128,19 @@ main() {
     install_from_dnf "zsh"
     
     install_from_flatpak "com.bitwarden.desktop"
+    install_from_flatpak "com.discordapp.Discord"
     install_from_flatpak "com.slack.Slack"
     install_from_flatpak "org.gnome.DejaDup"
     install_from_flatpak "org.gnome.Extensions"
+    install_from_flatpak "org.telegram.desktop"
+    install_from_flatpak "org.videolan.VLC"
     install_from_flatpak "us.zoom.Zoom"
 
     install_homebrew
 
     install_from_homebrew "bitwarden-cli"
     install_from_homebrew "go"
+    install_from_homebrew "kustomize"
     install_from_homebrew "zsh-autosuggestions"
 
     generate_gpg_keys
