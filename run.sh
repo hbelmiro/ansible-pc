@@ -2,6 +2,8 @@
 
 set -e
 
+DIRECTORIES_TO_ADD_TO_PATH=()
+
 log() {
     local message="$1"
     echo -e "\033[1m$message\033[0m"
@@ -121,6 +123,22 @@ allow_volume_over_100_percent() {
     gsettings set org.gnome.desktop.sound allow-volume-above-100-percent 'true'
 }
 
+install_kgrep() {
+    pushd ~/dev/hbelmiro/
+
+    git clone https://github.com/hbelmiro/kgrep.git
+    DIRECTORIES_TO_ADD_TO_PATH+=( "${HOME}/dev/hbelmiro/kgrep" )
+
+    popd
+}
+
+show_directories_for_path() {
+    log "Directories to add to PATH:"
+    for DIR in "${DIRECTORIES_TO_ADD_TO_PATH[@]}"; do
+        echo "${DIR}"
+    done
+}
+
 main() {
     install_from_dnf "python3-pip"
     install_from_dnf "bat"
@@ -156,6 +174,10 @@ main() {
     install_jdk "21"
 
     allow_volume_over_100_percent
+
+    install_kgrep
+
+    show_directories_for_path
 }
 
 main
