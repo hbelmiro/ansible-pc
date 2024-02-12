@@ -117,6 +117,10 @@ install_jdk() {
     fi
 }
 
+allow_volume_over_100_percent() {
+    gsettings set org.gnome.desktop.sound allow-volume-above-100-percent 'true'
+}
+
 main() {
     install_from_dnf "python3-pip"
     install_from_dnf "bat"
@@ -150,6 +154,8 @@ main() {
 
     install_jdk "17"
     install_jdk "21"
+
+    allow_volume_over_100_percent
 }
 
 main
