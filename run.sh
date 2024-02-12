@@ -124,10 +124,23 @@ allow_volume_over_100_percent() {
 }
 
 install_kgrep() {
+    rm -rf ~/dev/hbelmiro/kgrep
+
     pushd ~/dev/hbelmiro/
 
     git clone https://github.com/hbelmiro/kgrep.git
     DIRECTORIES_TO_ADD_TO_PATH+=( "${HOME}/dev/hbelmiro/kgrep" )
+
+    popd
+}
+
+install_configure_ocp_pull_secrets() {
+    rm -rf ~/dev/hbelmiro/configure-ocp-pull-secrets
+
+    pushd ~/dev/hbelmiro/
+
+    git clone https://github.com/hbelmiro/configure-ocp-pull-secrets.git
+    DIRECTORIES_TO_ADD_TO_PATH+=( "${HOME}/dev/hbelmiro/configure-ocp-pull-secrets" )
 
     popd
 }
@@ -176,6 +189,7 @@ main() {
     allow_volume_over_100_percent
 
     install_kgrep
+    install_configure_ocp_pull_secrets
 
     show_directories_for_path
 }
