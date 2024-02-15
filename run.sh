@@ -152,6 +152,12 @@ show_directories_for_path() {
     done
 }
 
+configure_us_international_keyboard() {
+    log "Configuring keyboard..."
+    cp resources/.XCompose ~
+    log "Keyboard configured. Restart Gnome"
+}
+
 main() {
     install_from_dnf "python3-pip"
     install_from_dnf "bat"
@@ -193,6 +199,8 @@ main() {
     install_configure_ocp_pull_secrets
 
     show_directories_for_path
+
+    configure_us_international_keyboard
 }
 
 main
