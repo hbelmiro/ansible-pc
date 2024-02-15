@@ -47,6 +47,8 @@ install_homebrew() {
         log "Homebrew is not installed. Installing..."
         
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+        sudo yum groupinstall 'Development Tools'
     else
         log "Homebrew is already installed."
     fi
