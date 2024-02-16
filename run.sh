@@ -160,6 +160,13 @@ configure_us_international_keyboard() {
     log "Keyboard configured. Restart Gnome"
 }
 
+install_vscode() {
+    sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+    sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+    dnf check-update
+    sudo dnf install code
+}
+
 main() {
     install_from_dnf "python3-pip"
     install_from_dnf "bat"
@@ -171,6 +178,8 @@ main() {
     install_from_dnf "podman-docker" && sudo touch /etc/containers/nodocker
     install_from_dnf "terminator"
     install_from_dnf "zsh"
+
+    install_vscode
     
     install_from_flatpak "com.bitwarden.desktop"
     install_from_flatpak "com.discordapp.Discord"
