@@ -46,9 +46,11 @@ install_homebrew() {
     if ! command -v "brew" &> /dev/null; then
         log "Homebrew is not installed. Installing..."
         
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        export NONINTERACTIVE=true && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-        sudo yum groupinstall 'Development Tools'
+        (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/hbelmiro/.zshrc
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        sudo yum groupinstall 'Development Tools' -y
     else
         log "Homebrew is already installed."
     fi
