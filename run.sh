@@ -154,6 +154,21 @@ show_directories_for_path() {
     done
 }
 
+install_oc() {
+    if ! command -v "oc" &> /dev/null; then
+        log "OpenShift CLI is not installed. Installing..."
+
+        mkdir "${HOME}"/dev/oc
+
+        curl -L https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/linux/oc.tar.gz  | tar -xzf - -C "${HOME}"/dev/oc
+        chmod +x ~/dev/oc/oc && chmod +x ~/dev/oc/kubectl
+
+        DIRECTORIES_TO_ADD_TO_PATH+=( "${HOME}/dev/oc" )
+    else
+        log "OpenShift CLI is already installed."
+    fi
+}
+
 configure_us_international_keyboard() {
     log "Configuring keyboard..."
     cp resources/.XCompose ~
@@ -214,6 +229,7 @@ main() {
     allow_volume_over_100_percent
 
     install_kgrep
+    install_oc
     install_configure_ocp_pull_secrets
 
     show_directories_for_path
