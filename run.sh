@@ -189,10 +189,14 @@ install_vscode() {
     fi
 }
 
+install_flatpak() {
+    install_from_dnf "flatpak"
+    sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+}
+
 main() {
     install_from_dnf "python3-pip"
     install_from_dnf "bat"
-    install_from_dnf "flatpak"
     install_from_dnf "gcc"
     install_from_dnf "gnome-tweaks"
     install_from_dnf "kolourpaint"
@@ -200,6 +204,8 @@ main() {
     install_from_dnf "podman-docker" && sudo touch /etc/containers/nodocker
     install_from_dnf "terminator"
     install_from_dnf "zsh"
+
+    install_flatpak
 
     install_vscode
     
