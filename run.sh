@@ -2,12 +2,10 @@
 
 set -e
 
-DIRECTORIES_TO_ADD_TO_PATH=()
+source log.sh
+source install_from_homebrew.sh
 
-log() {
-    local message="$1"
-    echo -e "\033[1m$message\033[0m"
-}
+DIRECTORIES_TO_ADD_TO_PATH=()
 
 install_from_dnf() {
     local package_name="$1"
@@ -24,17 +22,6 @@ install_from_flatpak() {
     local package_name="$1"
     log "Installing $package_name..."
     if flatpak install flathub "$package_name" -y; then
-        log "$package_name has been successfully installed."
-    else
-        log "Failed to install $package_name. Please install it manually."
-        exit 1
-    fi
-}
-
-install_from_homebrew() {
-    local package_name="$1"
-    log "Installing $package_name..."
-    if brew install "$package_name"; then
         log "$package_name has been successfully installed."
     else
         log "Failed to install $package_name. Please install it manually."
@@ -223,9 +210,10 @@ main() {
     install_from_homebrew "bitwarden-cli"
     install_from_homebrew "go"
     install_from_homebrew "kustomize"
-    install_from_homebrew "pyenv"
     install_from_homebrew "yq"
     install_from_homebrew "zsh-autosuggestions"
+
+    source install_conda.sh
 
     generate_gpg_keys
     configure_git
