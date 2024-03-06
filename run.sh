@@ -187,6 +187,7 @@ main() {
     install_from_dnf "bat"
     install_from_dnf "cmake"
     install_from_dnf "gcc"
+    install_from_dnf "gcc-c++"
     install_from_dnf "gnome-tweaks"
     install_from_dnf "kolourpaint"
     install_from_dnf "maven"
