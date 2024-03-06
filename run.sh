@@ -183,7 +183,9 @@ install_flatpak() {
 
 main() {
     install_from_dnf "python3-pip"
+    install_from_dnf "python3-pytest"
     install_from_dnf "bat"
+    install_from_dnf "cmake"
     install_from_dnf "gcc"
     install_from_dnf "gnome-tweaks"
     install_from_dnf "kolourpaint"
