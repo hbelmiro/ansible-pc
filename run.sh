@@ -185,7 +185,6 @@ main() {
     install_from_dnf "python3-pip"
     install_from_dnf "python3-pytest"
     install_from_dnf "bat"
-    install_from_dnf "bind-utils"
     install_from_dnf "cmake"
     install_from_dnf "gcc"
     install_from_dnf "gcc-c++"
