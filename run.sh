@@ -182,6 +182,7 @@ install_flatpak() {
 }
 
 main() {
+    install_from_dnf "python3.10-devel"
     install_from_dnf "python3-pip"
     install_from_dnf "python3-pytest"
     install_from_dnf "bat"
