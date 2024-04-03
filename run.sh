@@ -196,6 +196,7 @@ main() {
     install_from_dnf "podman-docker" && sudo touch /etc/containers/nodocker
     install_from_dnf "terminator"
     install_from_dnf "tmux"
+    install_from_dnf "xclip"
     install_from_dnf "zsh"
 
     install_flatpak
