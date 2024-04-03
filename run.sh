@@ -217,6 +217,7 @@ main() {
     install_from_homebrew "bitwarden-cli"
     install_from_homebrew "go"
     install_from_homebrew "kustomize"
+    install_from_homebrew "quarkusio/tap/quarkus"
     install_from_homebrew "yq"
     install_from_homebrew "zsh-autosuggestions"
 
