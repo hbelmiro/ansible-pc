@@ -187,6 +187,7 @@ main() {
     install_from_dnf "python3-pytest"
     install_from_dnf "bat"
     install_from_dnf "cmake"
+    install_from_dnf "fzf"
     install_from_dnf "gcc"
     install_from_dnf "gcc-c++"
     install_from_dnf "git-crypt"
